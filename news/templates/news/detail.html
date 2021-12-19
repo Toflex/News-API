@@ -1,0 +1,65 @@
+{% extends "news/base.html" %}
+{% load news_tags %} 
+
+{% block main %}
+
+
+<div class="col-md-12 mt-5">
+
+  <div class="card-body">
+    <h3 class="card-title">{{news.title|default:""}}</h3>
+    {% if news.text %} 
+      {%autoescape off%}
+        <p> {{news.text}} </p> 
+      {%endautoescape%}
+    {%endif%}
+
+
+    <!-- About author and source -->
+    <figure>
+      <figcaption class="blockquote-footer">
+        {{news.by}}
+        {% if news.url %}
+        <cite title="Source Title">
+          - <a class="link" target="_blank" href="{{news.url}}">Source</a>
+        </cite><br/>
+        {%endif%}
+        <span>{{news.time|default:0|toDate}}</span>
+      </figcaption>
+    </figure>
+    </div>
+
+    
+
+    
+  <div class="card-body">
+    <h5 class="card-title">Comments</h5>
+    <!-- List group for comments -->
+    <div class="list-group">
+      {% for kid in kids %}
+        <a href="{% url 'detail' pk=kid.id%}" class="list-group-item list-group-item-action" aria-current="true">
+        <p style="color: gray;"> {{kid.by}} </p>
+        <div class="d-flex w-100 justify-content-between">
+          <p class="mb-1"> 
+            {% autoescape off %}
+              {{kid.text|truncatechars:100}}
+              {% endautoescape %}
+          </p>
+          <small>{{kid.time|default:0|toDate|timesince}}</small>
+        </div>
+        <div class="mb-1 mt-2">
+          <div class="icon">
+            <i class="bi bi-chat-left-dots"></i>
+            <div class="label">{{kid.descendants}}</div>
+          </div>
+        </div>
+      </a>
+      {%empty%}
+      <small><i>No comment</i></small>
+      {%endfor%}
+    </div><!-- End List group Advanced Content -->
+
+  </div>
+</div>
+
+{%endblock main%}

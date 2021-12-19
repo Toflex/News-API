@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="container">
+    <form method="get" action="{% url 'search' %}">
+      <div class="mb-3">
+        <input
+          type="text"
+          name="query"
+          minlength="3"
+          maxlength="50"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          required
+        />
+      </div>
+      <div class="mb-3">
+      <select class="form-select" name="type" aria-label="Default select example">
+        <option value="" selected>All</option>
+        <option value="story">News</option>
+        <option value="job">Job</option>
+        <option value="poll">Poll</option>
+      </select>
+    </div>
+      <button type="submit" class="btn btn-sm btn-primary">Search</button>
+    </form>
+  </div>

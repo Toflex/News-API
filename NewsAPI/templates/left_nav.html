@@ -1,0 +1,32 @@
+{% load static %}
+
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'stories'%}">
+        <span>Recent News</span>
+      </a>
+    </li>
+    <!-- End Recent Stories Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'jobs' %}">
+        <span>Job</span>
+      </a>
+    </li>
+    <!-- End Jobs Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'polls' %}">
+        <span>Polls</span>
+      </a>
+    </li>
+    <!-- End Jobs Nav -->
+
+    <li class="nav-heading">Search</li>
+
+    <!-- Search -->
+    {% include '_search.html'%}
+    <!-- End Search -->
+  </ul>
+</aside>

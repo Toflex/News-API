@@ -1,0 +1,41 @@
+{% extends "news/base.html" %} 
+{% load news_tags %} 
+
+{% block main %}
+
+<div class="col-md-12 mt-5">
+  <table class="table table-striped">
+    {% for item in items %}
+    <tr style="padding: 10px;">
+      <td>
+        <figure>
+          <blockquote class="blockquote">
+            <p>
+                <a href="{% url 'detail' pk=item.id%}">{{item.title|default:"No title"}}</a>
+            </p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            {{item.by}} - ({{item.time|default:0 |toDate|timesince}})<br/>
+            {% if item.url %}
+            <cite title="Source Title">
+              <a class="link" target="_blank" href="{{item.url}}">Source</a>
+            </cite>
+            {%endif%}
+          </figcaption>
+        </figure>
+      </td>
+      <td>
+        <div class="icon">
+          <i class="bi bi-chat-left-dots"></i>
+          <div class="label">{{item.descendants}}</div>
+        </div>
+        
+      </td>
+    </tr>
+    {%endfor%}
+  </table>
+
+  {% include 'pagination.html' %}
+</div>
+
+{%endblock%}
